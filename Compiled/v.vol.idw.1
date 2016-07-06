@@ -1,0 +1,94 @@
+.TH v.vol.idw 1 "" "GRASS 7.0.0" "Grass User's Manual"
+.SH NAME
+\fI\fBv.vol.idw\fR\fR  \- Interpolates point data to a 3D raster map using Inverse Distance Weighting (IDW) algorithm.
+.SH KEYWORDS
+vector, Volume, voxel, interpolation, IDW
+.SH SYNOPSIS
+\fBv.vol.idw\fR
+.br
+\fBv.vol.idw \-\-help\fR
+.br
+\fBv.vol.idw\fR  [\fBinput\fR=\fIname\fR]   [\fBlayer\fR=\fIstring\fR]  \fBoutput\fR=\fIname\fR \fBcolumn\fR=\fIname\fR \fBnpoints\fR=\fIcount\fR  [\-\-\fBoverwrite\fR]  [\-\-\fBhelp\fR]  [\-\-\fBverbose\fR]  [\-\-\fBquiet\fR]  [\-\-\fBui\fR]
+.SS Flags:
+.IP "\fB\-\-overwrite\fR" 4m
+.br
+Allow output files to overwrite existing files
+.IP "\fB\-\-help\fR" 4m
+.br
+Print usage summary
+.IP "\fB\-\-verbose\fR" 4m
+.br
+Verbose module output
+.IP "\fB\-\-quiet\fR" 4m
+.br
+Quiet module output
+.IP "\fB\-\-ui\fR" 4m
+.br
+Force launching GUI dialog
+.SS Parameters:
+.IP "\fBinput\fR=\fIname\fR" 4m
+.br
+Number of z\-field attribute to use for calculation
+.IP "\fBlayer\fR=\fIstring\fR" 4m
+.br
+Layer number or name
+.br
+Vector features can have category values in different layers. This number determines which layer to use. When used with direct OGR access this is the layer name.
+.br
+Default: \fI1\fR
+.IP "\fBoutput\fR=\fIname\fR \fB[required]\fR" 4m
+.br
+Name for output 3D raster map
+.IP "\fBcolumn\fR=\fIname\fR \fB[required]\fR" 4m
+.br
+Name of attribute column (data type must be numeric)
+.IP "\fBnpoints\fR=\fIcount\fR \fB[required]\fR" 4m
+.br
+Number of interpolation points
+.br
+Default: \fI12\fR
+.SH DESCRIPTION
+\fIv.vol.idw\fRfills a RASTER3D raster volume matrix with
+interpolated values generated from a set of irregularly spaced data
+points using numerical approximation (weighted averaging)
+techniques. The interpolated value of a tile is determined
+by values of nearby data points and the distance of the
+cell from those input points.  In comparison with other
+methods, numerical approximation allows representation of
+more complex volumes (particularly those with anomalous
+features), restricts the spatial influence of any errors,
+and generates the interpolated volume from the data
+points.
+.SH EXAMPLE
+.br
+.nf
+\fC
+v.vol.idw input=map output=rastermap3d column=col_name npoints=36
+\fR
+.fi
+.SH SEE ALSO
+\fI
+g.region,
+v.in.ascii,
+v.in.db,
+v.surf.idw,
+v.vol.rst,
+v.to.rast3
+\fR
+.SH AUTHOR
+Jaro Hofierka, Department of Geography and Regional Development,
+University of Presov, Presov, Slovakia,
+hofierka@geomodel.sk
+.br
+.PP
+Modifications for raster3d library and vector format:
+.br
+Noortheen Raja J, Institute of Remote Sensing,College of Engineering, Guindy,
+Anna University, India.
+jnoortheen@gmail.com
+.PP
+\fILast changed: $Date: 2015\-03\-28 09:56:09 \-0700 (Sat, 28 Mar 2015) $\fR
+.PP
+Main index | Vector index | Topics index | Keywords index | Full index
+.PP
+© 2003\-2015 GRASS Development Team, GRASS GIS 7.0.0 Reference Manual
